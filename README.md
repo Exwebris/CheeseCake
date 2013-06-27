@@ -7,9 +7,10 @@ attempts to add a little extra.
 So, what's included?
 --------------------
 
-* CakePHP (obviously)
-* Twitter Bootstrap (not yet)
-* jQuery & jQueryUI (not yet)
+* CakePHP 2.3.6 stable (obviously)
+* Twitter Bootstrap 2.3.1 (via Cakestrap theme)
+* jQuery 1.9.1 (via Cakestrap theme)
+* jQueryUI (not yet)
 * Users plugin (not yet)
 * Settings plugin (not yet)
 * Friendly installer (not yet)
