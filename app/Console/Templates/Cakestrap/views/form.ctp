@@ -59,7 +59,7 @@
 						continue;
 					} elseif (!in_array($field, array('created', 'modified', 'updated'))) {
 						echo "<div class=\"control-group\">\n";
-						echo "\t<?php echo \$this->Form->label('{$field}', '{$field}', array('class' => 'control-label'));?>\n";
+						echo "\t<?php echo \$this->Form->label('{$field}', Inflector::humanize('{$field}'), array('class' => 'control-label'));?>\n";
 						echo "\t<div class=\"controls\">\n";
 						echo "\t\t<?php echo \$this->Form->input('{$field}', array('class' => 'span12')); ?>\n";
 						echo "\t</div><!-- .controls -->\n";
