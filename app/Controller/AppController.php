@@ -34,6 +34,11 @@ App::uses('Controller', 'Controller');
 class AppController extends Controller {
 
 	/*
+	 * Include DebugKit component
+	 */
+	public $components = array('DebugKit.Toolbar');
+	
+	/*
 	 * Switch to Cakestrap theme which integrates Twitter Bootstrap CSS framework
 	 */
 	public $theme = 'Cakestrap';
