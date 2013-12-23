@@ -8,6 +8,7 @@ So, what's included?
 --------------------
 
 * CakePHP 2.3.6 stable (obviously)
+* DebugKit 2.2.2
 * Twitter Bootstrap 2.3.1 (via Cakestrap theme)
 * jQuery 1.9.1 (via Cakestrap theme)
 * jQueryUI (not yet)
