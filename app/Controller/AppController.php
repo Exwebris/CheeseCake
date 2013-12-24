@@ -36,7 +36,7 @@ class AppController extends Controller {
 	/*
 	 * Include DebugKit component
 	 */
-	public $components = array('DebugKit.Toolbar');
+	public $components = array('Session', 'DebugKit.Toolbar');
 	
 	/*
 	 * Switch to Cakestrap theme which integrates Twitter Bootstrap CSS framework
