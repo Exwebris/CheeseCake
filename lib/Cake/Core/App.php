@@ -2,8 +2,6 @@
 /**
  * App class
  *
- * PHP 5
- *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
  * Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
@@ -535,11 +533,15 @@ class App {
 		if (!isset(self::$_classMap[$className])) {
 			return false;
 		}
+		if (strpos($className, '..') !== false) {
+			return false;
+		}
 
 		$parts = explode('.', self::$_classMap[$className], 2);
 		list($plugin, $package) = count($parts) > 1 ? $parts : array(null, current($parts));
 
-		if ($file = self::_mapped($className, $plugin)) {
+		$file = self::_mapped($className, $plugin);
+		if ($file) {
 			return include $file;
 		}
 		$paths = self::path($package, $plugin);

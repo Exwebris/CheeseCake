@@ -2,8 +2,6 @@
 /**
  * ScaffoldTest file
  *
- * PHP 5
- *
  * CakePHP(tm) Tests <http://book.cakephp.org/2.0/en/development/testing.html>
  * Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
@@ -129,6 +127,7 @@ class ScaffoldTest extends CakeTestCase {
  */
 	public function setUp() {
 		parent::setUp();
+		Configure::write('Config.language', 'eng');
 		$request = new CakeRequest(null, false);
 		$this->Controller = new ScaffoldMockController($request);
 		$this->Controller->response = $this->getMock('CakeResponse', array('_sendHeader'));

@@ -2,8 +2,6 @@
 /**
  * The Plugin Task handles creating an empty plugin, ready to be used
  *
- * PHP 5
- *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
  * Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
@@ -65,9 +63,8 @@ class PluginTask extends AppShell {
 				$this->out(__d('cake_console', 'Plugin: %s already exists, no action taken', $plugin));
 				$this->out(__d('cake_console', 'Path: %s', $pluginPath));
 				return false;
-			} else {
-				$this->_interactive($plugin);
 			}
+			$this->_interactive($plugin);
 		} else {
 			return $this->_interactive();
 		}

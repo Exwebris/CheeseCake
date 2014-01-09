@@ -4,8 +4,6 @@
  *
  * Provides the Model validation logic.
  *
- * PHP 5
- *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
  * Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
@@ -148,9 +146,8 @@ class CakeValidationRule {
 		if (in_array($this->required, array('create', 'update'), true)) {
 			if ($this->required === 'create' && !$this->isUpdate() || $this->required === 'update' && $this->isUpdate()) {
 				return true;
-			} else {
-				return false;
 			}
+			return false;
 		}
 
 		return $this->required;

@@ -4,8 +4,6 @@
  *
  * Provides the Model validation logic.
  *
- * PHP 5
- *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
  * Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
@@ -21,6 +19,7 @@
  */
 
 App::uses('CakeValidationSet', 'Model/Validator');
+App::uses('Hash', 'Utility');
 
 /**
  * ModelValidator object encapsulates all methods related to data validations for a model
@@ -140,7 +139,7 @@ class ModelValidator implements ArrayAccess, IteratorAggregate, Countable {
 		if (!empty($options['deep']) && isset($data[$model->alias])) {
 			$recordData = $data[$model->alias];
 			unset($data[$model->alias]);
-			$data = array_merge($data, $recordData);
+			$data += $recordData;
 		}
 
 		$associations = $model->getAssociated();
@@ -394,11 +393,11 @@ class ModelValidator implements ArrayAccess, IteratorAggregate, Countable {
 		}
 		unset($fieldList);
 
-		$validateList = array();
-		if (empty($whitelist)) {
+		if (empty($whitelist) || Hash::dimensions($whitelist) > 1) {
 			return $this->_fields;
 		}
 
+		$validateList = array();
 		$this->validationErrors = array();
 		foreach ((array)$whitelist as $f) {
 			if (!empty($this->_fields[$f])) {
@@ -525,7 +524,7 @@ class ModelValidator implements ArrayAccess, IteratorAggregate, Countable {
 /**
  * Returns the number of fields having validation rules
  *
- * @return int
+ * @return integer
  */
 	public function count() {
 		$this->_parseRules();
