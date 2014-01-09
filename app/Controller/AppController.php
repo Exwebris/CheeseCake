@@ -33,6 +33,15 @@ App::uses('Controller', 'Controller');
 class AppController extends Controller {
 
 	/*
+	 * Overwrite CakePHP's default FormHelper for jQuery date/time picker fields
+	 */
+	public $helpers = array(
+		'Form' => array(
+			'className' => 'CheeseForm',
+		),
+	);
+
+	/*
 	 * Include DebugKit component
 	 */
 	public $components = array('Session', 'DebugKit.Toolbar');
