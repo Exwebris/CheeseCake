@@ -35,6 +35,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 			echo $this->Html->css('bootstrap.min');
 			echo $this->Html->css('bootstrap-responsive.min');
 			echo $this->Html->css('core');
+			echo $this->Html->css('jquery-ui.min');
 			echo $this->Html->css('jquery-ui-timepicker-addon.min');
 
 			echo $this->fetch('css');
@@ -43,6 +44,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 			echo $this->Html->script('libs/jquery-ui.min');
 			echo $this->Html->script('libs/jquery-ui-timepicker-addon.min');
 			echo $this->Html->script('libs/bootstrap.min');
+			echo $this->Html->script('libs/common');
 			
 			echo $this->fetch('script');
 		?>
