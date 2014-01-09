@@ -2,8 +2,6 @@
 /**
  * ControllerTestCase file
  *
- * PHP 5
- *
  * CakePHP(tm) Tests <http://book.cakephp.org/2.0/en/development/testing.html>
  * Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
@@ -334,6 +332,7 @@ abstract class ControllerTestCase extends CakeTestCase {
 		$request = $this->getMock('CakeRequest');
 		$response = $this->getMock('CakeResponse', array('_sendHeader'));
 		$controllerObj->__construct($request, $response);
+		$controllerObj->Components->setController($controllerObj);
 
 		$config = ClassRegistry::config('Model');
 		foreach ($mocks['models'] as $model => $methods) {
@@ -363,7 +362,8 @@ abstract class ControllerTestCase extends CakeTestCase {
 					'class' => $componentClass
 				));
 			}
-			$componentObj = $this->getMock($componentClass, $methods, array($controllerObj->Components));
+			$config = isset($controllerObj->components[$component]) ? $controllerObj->components[$component] : array();
+			$componentObj = $this->getMock($componentClass, $methods, array($controllerObj->Components, $config));
 			$controllerObj->Components->set($name, $componentObj);
 			$controllerObj->Components->enable($name);
 		}

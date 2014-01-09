@@ -2,8 +2,6 @@
 /**
  * StringTest file
  *
- * PHP 5
- *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
  * Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
@@ -180,7 +178,7 @@ class StringTest extends CakeTestCase {
 		$expected = "this is a long string with a few? params you know";
 		$this->assertEquals($expected, $result);
 
-		$result = String::insert('update saved_urls set url = :url where id = :id', array('url' => 'http://www.testurl.com/param1:url/param2:id','id' => 1));
+		$result = String::insert('update saved_urls set url = :url where id = :id', array('url' => 'http://www.testurl.com/param1:url/param2:id', 'id' => 1));
 		$expected = "update saved_urls set url = http://www.testurl.com/param1:url/param2:id where id = 1";
 		$this->assertEquals($expected, $result);
 
@@ -315,6 +313,67 @@ class StringTest extends CakeTestCase {
 	}
 
 /**
+ * test that wordWrap() works the same as built-in wordwrap function
+ *
+ * @dataProvider wordWrapProvider
+ * @return void
+ */
+	public function testWordWrap($text, $width, $break = "\n", $cut = false) {
+		$result = String::wordWrap($text, $width, $break, $cut);
+		$expected = wordwrap($text, $width, $break, $cut);
+		$this->assertTextEquals($expected, $result, 'Text not wrapped same as built-in function.');
+	}
+
+/**
+ * data provider for testWordWrap method
+ *
+ * @return array
+ */
+	public function wordWrapProvider() {
+		return array(
+			array(
+				'The quick brown fox jumped over the lazy dog.',
+				33
+			),
+			array(
+				'A very long woooooooooooord.',
+				8
+			),
+			array(
+				'A very long woooooooooooord. Right.',
+				8
+			),
+		);
+	}
+
+/**
+ * test that wordWrap() properly handle unicode strings.
+ *
+ * @return void
+ */
+	public function testWordWrapUnicodeAware() {
+		$text = 'Но вим омниюм факёльиси элыктрам, мюнырэ лэгыры векж ыт. Выльёт квюандо нюмквуам ты кюм. Зыд эю рыбюм.';
+		$result = String::wordWrap($text, 33, "\n", true);
+		$expected = <<<TEXT
+Но вим омниюм факёльиси элыктрам,
+мюнырэ лэгыры векж ыт. Выльёт квю
+андо нюмквуам ты кюм. Зыд эю рыбю
+м.
+TEXT;
+		$this->assertTextEquals($expected, $result, 'Text not wrapped.');
+
+		$text = 'Но вим омниюм факёльиси элыктрам, мюнырэ лэгыры векж ыт. Выльёт квюандо нюмквуам ты кюм. Зыд эю рыбюм.';
+		$result = String::wordWrap($text, 33, "\n");
+		$expected = <<<TEXT
+Но вим омниюм факёльиси элыктрам,
+мюнырэ лэгыры векж ыт. Выльёт
+квюандо нюмквуам ты кюм. Зыд эю
+рыбюм.
+TEXT;
+		$this->assertTextEquals($expected, $result, 'Text not wrapped.');
+	}
+
+/**
  * test wrap method.
  *
  * @return void
@@ -330,13 +389,21 @@ TEXT;
 		$this->assertTextEquals($expected, $result, 'Text not wrapped.');
 
 		$result = String::wrap($text, array('width' => 20, 'wordWrap' => false));
+		$expected = 'This is the song th' . "\n" .
+			'at never ends. This' . "\n" .
+			' is the song that n' . "\n" .
+			'ever ends. This is ' . "\n" .
+			'the song that never' . "\n" .
+			' ends.';
+		$this->assertTextEquals($expected, $result, 'Text not wrapped.');
+
+		$text = 'Но вим омниюм факёльиси элыктрам, мюнырэ лэгыры векж ыт. Выльёт квюандо нюмквуам ты кюм. Зыд эю рыбюм.';
+		$result = String::wrap($text, 33);
 		$expected = <<<TEXT
-This is the song th
-at never ends. This
- is the song that n
-ever ends. This is 
-the song that never
- ends.
+Но вим омниюм факёльиси элыктрам,
+мюнырэ лэгыры векж ыт. Выльёт
+квюандо нюмквуам ты кюм. Зыд эю
+рыбюм.
 TEXT;
 		$this->assertTextEquals($expected, $result, 'Text not wrapped.');
 	}

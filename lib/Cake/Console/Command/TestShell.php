@@ -4,8 +4,6 @@
  *
  * This Shell allows the running of test suites via the cake command line
  *
- * PHP 5
- *
  * CakePHP(tm) Tests <http://book.cakephp.org/2.0/en/development/testing.html>
  * Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
@@ -338,7 +336,6 @@ class TestShell extends Shell {
  * @param string $file
  * @param string $category
  * @param boolean $throwOnMissingFile
- * @access protected
  * @return array array(type, case)
  * @throws Exception
  */
@@ -414,7 +411,6 @@ class TestShell extends Shell {
  * For the given file, what category of test is it? returns app, core or the name of the plugin
  *
  * @param string $file
- * @access protected
  * @return string
  */
 	protected function _mapFileToCategory($file) {

@@ -369,15 +369,18 @@ class CakeRoute {
 	}
 
 /**
- * Apply persistent parameters to an URL array. Persistent parameters are a special
+ * Apply persistent parameters to a URL array. Persistent parameters are a special
  * key used during route creation to force route parameters to persist when omitted from
- * an URL array.
+ * a URL array.
  *
  * @param array $url The array to apply persistent parameters to.
  * @param array $params An array of persistent values to replace persistent ones.
  * @return array An array with persistent parameters applied.
  */
 	public function persistParams($url, $params) {
+		if (empty($this->options['persist']) || !is_array($this->options['persist'])) {
+			return $url;
+		}
 		foreach ($this->options['persist'] as $persistKey) {
 			if (array_key_exists($persistKey, $params) && !isset($url[$persistKey])) {
 				$url[$persistKey] = $params[$persistKey];
@@ -387,7 +390,7 @@ class CakeRoute {
 	}
 
 /**
- * Check if an URL array matches this route instance.
+ * Check if a URL array matches this route instance.
  *
  * If the URL matches the route parameters and settings, then
  * return a generated string URL. If the URL doesn't match the route parameters, false will be returned.
@@ -482,7 +485,7 @@ class CakeRoute {
 	}
 
 /**
- * Converts a matching route array into an URL string.
+ * Converts a matching route array into a URL string.
  *
  * Composes the string URL using the template
  * used to create the route.

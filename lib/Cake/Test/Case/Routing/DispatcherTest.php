@@ -2,8 +2,6 @@
 /**
  * DispatcherTest file
  *
- * PHP 5
- *
  * CakePHP(tm) Tests <http://book.cakephp.org/2.0/en/development/testing.html>
  * Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
@@ -341,7 +339,7 @@ class SomePostsController extends AppController {
 /**
  * autoRender property
  *
- * @var bool false
+ * @var boolean
  */
 	public $autoRender = false;
 
@@ -511,6 +509,7 @@ class DispatcherTest extends CakeTestCase {
  * @return void
  */
 	public function setUp() {
+		parent::setUp();
 		$this->_get = $_GET;
 		$_GET = array();
 		$this->_post = $_POST;
@@ -538,6 +537,7 @@ class DispatcherTest extends CakeTestCase {
  * @return void
  */
 	public function tearDown() {
+		parent::tearDown();
 		$_GET = $this->_get;
 		$_POST = $this->_post;
 		$_FILES = $this->_files;

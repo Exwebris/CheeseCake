@@ -2,8 +2,6 @@
 /**
  * SecurityComponentTest file
  *
- * PHP 5
- *
  * CakePHP(tm) Tests <http://book.cakephp.org/2.0/en/development/testing.html>
  * Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
@@ -1092,7 +1090,7 @@ class SecurityComponentTest extends CakeTestCase {
  * the params.
  *
  * @return void
- * @see http://cakephp.lighthouseapp.com/projects/42648/tickets/68
+ * @see https://cakephp.lighthouseapp.com/projects/42648/tickets/68
  */
 	public function testSettingTokenForRequestAction() {
 		$this->Controller->Security->startup($this->Controller);
@@ -1109,7 +1107,7 @@ class SecurityComponentTest extends CakeTestCase {
  * test that blackhole doesn't delete the _Token session key so repeat data submissions
  * stay blackholed.
  *
- * @link http://cakephp.lighthouseapp.com/projects/42648/tickets/214
+ * @link https://cakephp.lighthouseapp.com/projects/42648/tickets/214
  * @return void
  */
 	public function testBlackHoleNotDeletingSessionInformation() {
@@ -1188,7 +1186,7 @@ class SecurityComponentTest extends CakeTestCase {
 
 		$this->Controller->request = $this->getMock('CakeRequest', array('is'));
 		$this->Controller->request->expects($this->once())->method('is')
-			->with('post')
+			->with(array('post', 'put'))
 			->will($this->returnValue(true));
 
 		$this->Controller->request->params['action'] = 'index';
@@ -1240,7 +1238,7 @@ class SecurityComponentTest extends CakeTestCase {
 
 		$this->Controller->request = $this->getMock('CakeRequest', array('is'));
 		$this->Controller->request->expects($this->once())->method('is')
-			->with('post')
+			->with(array('post', 'put'))
 			->will($this->returnValue(true));
 
 		$this->Controller->request->params['action'] = 'index';
@@ -1270,7 +1268,7 @@ class SecurityComponentTest extends CakeTestCase {
 
 		$this->Controller->request = $this->getMock('CakeRequest', array('is'));
 		$this->Controller->request->expects($this->once())->method('is')
-			->with('post')
+			->with(array('post', 'put'))
 			->will($this->returnValue(true));
 
 		$this->Controller->request->params['action'] = 'index';
@@ -1326,7 +1324,7 @@ class SecurityComponentTest extends CakeTestCase {
 
 		$this->Controller->request = $this->getMock('CakeRequest', array('is'));
 		$this->Controller->request->expects($this->once())->method('is')
-			->with('post')
+			->with(array('post', 'put'))
 			->will($this->returnValue(true));
 
 		$this->Controller->request->params['action'] = 'index';
