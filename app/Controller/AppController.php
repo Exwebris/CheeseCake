@@ -50,4 +50,70 @@ class AppController extends Controller {
 	 * Switch to Cakestrap theme which integrates Twitter Bootstrap CSS framework
 	 */
 	public $theme = 'Cakestrap';
+	
+	/**
+	 * Support for multiple flash messages
+	 * 
+	 * Almost verbatim from here:
+	 * http://mrphp.com.au/code/multiple-flash-messages-style-cakephp
+	 * 
+	 * @param string $message Flash message
+	 * @param string $layout Layout
+	 * @param array $options Options
+	 * @return void
+	 */
+	protected function _flash($message, $layout = 'default', $options = array()) {
+		$messages = (array) $this->Session->read('Message.multiFlash');
+		$messages[] = array(
+			'message' => $message,
+			'layout' => $layout,
+			'element' => 'default',
+			'params' => $options,
+		);
+		$this->Session->write('Message.multiFlash', $messages);
+	}
+
+	/**
+	 * Show success message
+	 *
+	 * @param string $message Message to show
+	 * @return void
+	 */
+	public function showSuccess($message) {
+		$this->_flash($message, 'default', array('class' => 'alert alert-success'));
+	}
+
+	/**
+	 * Show error message
+	 *
+	 * @param string $message Message to show
+	 * @return void
+	 */
+	public function showError($message) {
+		$message = sprintf("<strong>%s</strong> %s", __('Error!'), $message);
+		$this->_flash($message, 'default', array('class' => 'alert alert-error'));
+	}
+
+	/**
+	 * Show notice message
+	 *
+	 * @param string $message Message to show
+	 * @return void
+	 */
+	public function showNotice($message) {
+		$message = sprintf("<strong>%s</strong> %s", __('Notice:'), $message);
+		$this->_flash($message, 'default', array('class' => 'alert alert-info'));
+	}
+
+	/**
+	 * Show warning message
+	 *
+	 * @param string $message Message to show
+	 * @return void
+	 */
+	public function showWarning($message) {
+		$message = sprintf("<strong>%s</strong> %s", __('Warning:'), $message);
+		$this->_flash($message, 'default', array('class' => 'alert alert-block'));
+	}
+
 }

@@ -60,7 +60,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 			
 			<div id="content" class="container">
 
-				<?php echo $this->Session->flash(); ?>
+				<?php echo $this->element('alert'); ?>
 
 				<?php echo $this->fetch('content'); ?>
 			</div><!-- #header .container -->
