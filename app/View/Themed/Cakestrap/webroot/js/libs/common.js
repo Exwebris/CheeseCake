@@ -1,5 +1,6 @@
 $(document).ready(function() {
 	fixHeight();
+	addCloseButton();
 	attachDatePicker();
 });
 
@@ -34,4 +35,11 @@ function attachDatePicker() {
 		firstDay: 1,
 	});
 
+}
+
+/**
+ * Add close button to all alert boxes
+ */
+function addCloseButton() {
+	$(".alert").prepend('<a class="close pull-right" data-dismiss="alert" href="#">&times</a>');
 }
