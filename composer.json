@@ -1,9 +1,15 @@
 {
 	"name": "CheeseCake",
 	"require": {
-		"cakephp/cakephp": "2.4.5"
+		"cakephp/cakephp": "2.4.5",
+		"cakephp/debug_kit": "2.2.2"
 	},
 	"config": {
 		"vendor-dir": "Vendor/"
-	}
+	},
+    "extra": {
+        "installer-paths": {
+            "app/Plugin/{$name}/": ["type:cakephp-plugin"]
+        }
+    }
 }
