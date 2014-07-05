@@ -1,8 +1,7 @@
 {
-	"name": "CheeseCake",
 	"require": {
-		"cakephp/cakephp": "2.4.5",
-		"cakephp/debug_kit": "2.2.2"
+		"cakephp/cakephp": "2.4.*",
+		"cakephp/debug_kit": "2.2.*"
 	},
 	"config": {
 		"vendor-dir": "Vendor/"
