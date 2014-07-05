@@ -1,5 +1,4 @@
 {
-	"name": "CheeseCake",
 	"require": {
 		"cakephp/cakephp": "2.4.5",
 		"cakephp/debug_kit": "2.2.2"
